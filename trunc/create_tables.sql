@@ -42,7 +42,7 @@ CREATE TABLE ncalc (
 
 -- single_decay table includes all the beta, alpha, p, n, ... decays
 -- with one well defined initial and final state 
--- Initial state: initial = init. isotope symbol, ei = energy of initial state, jpi_i = J,pi of initial state
+-- Initial state:  ei = energy of initial state, jpi_i = J,pi of initial state
 -- ki = numeration of initial state (of same spin-parity)
 -- Final state:  ef = energy of final state, jpi_f = J,pi of final state
 -- kf = numeration of final state (of same spin-parity)
@@ -52,22 +52,18 @@ CREATE TABLE ncalc (
 -- fileref = reference to the calculation files if available
 -- calc_id = ID of the nuclear calculation in the ncalc table
 CREATE TABLE single_decay (
-	initial VARCHAR(5) NOT NULL,
     calc_id INT,
-    ei NUMERIC(6,4),
-    ef NUMERIC(6,4),
+	dtype VARCHAR(10), 
     jpi_i VARCHAR(6),
     jpi_f VARCHAR(6),
     ki INT,
     kf INT,
-    br NUMERIC(10,7),
-    dtype VARCHAR(10),  
+	ei NUMERIC(6,4),
+    ef NUMERIC(6,4),
+    br NUMERIC(10,7), 
     fileref VARCHAR(20),
     forb VARCHAR(6),
-    PRIMARY KEY (calc_id,jpi_i,jpi_f,ki,kf,dtype),
-    FOREIGN KEY (initial) REFERENCES ncalc (symb)
-		ON UPDATE RESTRICT
-		ON DELETE CASCADE,
+    PRIMARY KEY (calc_id,dtype,jpi_i,jpi_f,ki,kf),
 	FOREIGN KEY (calc_id) REFERENCES ncalc (calc_id)  
 		ON UPDATE RESTRICT
 		ON DELETE CASCADE
@@ -76,18 +72,12 @@ CREATE TABLE single_decay (
 -- other_transition table includes calculations for 2vBB,
 -- neutrino nucleus scattering etc. with multiple final/intermidiate
 -- states.
--- dtype = CC, NC, 0VBB, 2VBB, MU,....
--- NOTE, this would function with just calc_id (no symb) but it is much more user friendly with the symbol. The size of the database is relatively small,
--- so saving space here in a way which complicates querying later is not optimal.  
+-- dtype = CC, NC, 0VBB, 2VBB, MU,.... 
 CREATE TABLE other_transition (
-	initial VARCHAR(5) NOT NULL,
     calc_id INT,
     dtype VARCHAR(10),  
     fileref VARCHAR(20),
     PRIMARY KEY (calc_id,dtype),
-    FOREIGN KEY (initial) REFERENCES ncalc (symb)
-		ON UPDATE RESTRICT
-		ON DELETE CASCADE,
 	FOREIGN KEY (calc_id) REFERENCES ncalc (calc_id)  
 		ON UPDATE RESTRICT
 		ON DELETE CASCADE	

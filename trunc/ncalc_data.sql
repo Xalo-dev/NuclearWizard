@@ -7,4 +7,6 @@ INSERT INTO ncalc VALUES (NULL,'39Ar','SM','sdpfu','Joel',NULL);
 INSERT INTO ncalc VALUES (NULL,'39Ar','SM','sdpfk','Joel',NULL);
 INSERT INTO ncalc VALUES (NULL,'39Ar','SM','sdpfnow','Joel',NULL);
 
+INSERT INTO ncalc VALUES (NULL,'71Ga','SM','jun45','Joel',NULL);
+
 SELECT * FROM ncalc;

@@ -77,6 +77,8 @@ CREATE TABLE single_decay (
 -- neutrino nucleus scattering etc. with multiple final/intermidiate
 -- states.
 -- dtype = CC, NC, 0VBB, 2VBB, MU,....
+-- NOTE, this would function with just calc_id (no symb) but it is much more user friendly with the symbol. The size of the database is relatively small,
+-- so saving space here in a way which complicates querying later is not optimal.  
 CREATE TABLE other_transition (
 	initial VARCHAR(5) NOT NULL,
     calc_id INT,

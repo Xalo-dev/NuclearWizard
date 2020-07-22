@@ -61,6 +61,7 @@ CREATE TABLE single_decay (
 	ei NUMERIC(6,4),
     ef NUMERIC(6,4),
     br NUMERIC(10,7), 
+    qvalue NUMERIC(8,6), 
     fileref VARCHAR(20),
     forb VARCHAR(6),
     PRIMARY KEY (calc_id,dtype,jpi_i,jpi_f,ki,kf),

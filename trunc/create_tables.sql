@@ -14,7 +14,7 @@ CREATE TABLE nucleus (
 	symb VARCHAR(5) PRIMARY KEY,
 	a INT,
     z INT,
-    half_life INT,
+    half_life NUMERIC(8,6),
     hl_exp INT,
     hl_unit CHAR(1),
     gs VARCHAR(10)
